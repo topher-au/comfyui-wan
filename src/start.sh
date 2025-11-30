@@ -546,7 +546,12 @@ fi
 
 echo "▶️  Starting ComfyUI"
 
-nohup python3 "$NETWORK_VOLUME/ComfyUI/main.py" --listen --use-sage-attention > "$NETWORK_VOLUME/comfyui_${RUNPOD_POD_ID}_nohup.log" 2>&1 &
+COMFYUI_ARGS=("--listen")
+
+[[ ! -z "$USE_SAGE_ATTENTION" ]] && \
+	COMFYUI_ARGS+=("--use-sage-attention")
+	
+nohup python3 "$NETWORK_VOLUME/ComfyUI/main.py" ${COMFYUI_ARGS[@]} > "$NETWORK_VOLUME/comfyui_${RUNPOD_POD_ID}_nohup.log" 2>&1 &
 
     # Counter for timeout
     counter=0

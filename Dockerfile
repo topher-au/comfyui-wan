@@ -97,8 +97,7 @@ RUN for repo in \
         fi; \
     done
 
-COPY src/start_script.sh /start_script.sh
-RUN chmod +x /start_script.sh
-COPY 4xLSDIR.pth /4xLSDIR.pth
+COPY src/start_script.sh src/start.sh 4xLSDIR.pth /
+RUN chmod +x /start_script.sh /start.sh
 
 CMD ["/start_script.sh"]
